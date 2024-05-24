@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://34oll8xgn7hl"]
+
+[ext_resource type="Texture2D" uid="uid://bwx0lb6s3lva2" path="res://Textures/dinghySmall1.png" id="1_e416w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0trsc"]
+radius = 8.0
+
+[node name="Dingy" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_e416w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_0trsc")

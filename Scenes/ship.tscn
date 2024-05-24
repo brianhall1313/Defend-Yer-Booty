@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct7mf2gvte02m"]
+
+[ext_resource type="Script" path="res://Scenes/ship.gd" id="1_7vaos"]
+[ext_resource type="Texture2D" uid="uid://cwh8atx88ac46" path="res://Textures/ship (2).png" id="2_gkdhl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w0mef"]
+radius = 30.0
+height = 110.0
+
+[node name="ship" type="Node2D"]
+script = ExtResource("1_7vaos")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gkdhl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_w0mef")

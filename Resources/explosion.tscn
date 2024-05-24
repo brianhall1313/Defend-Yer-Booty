@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bosupr3pbnu2o"]
+
+[ext_resource type="Texture2D" uid="uid://o5wrvs6mwf63" path="res://Textures/explosion3.png" id="1_bomiq"]
+[ext_resource type="Texture2D" uid="uid://ceminijkaabps" path="res://Textures/explosion2.png" id="2_mvmaa"]
+[ext_resource type="Texture2D" uid="uid://bmdqvtrnbb2qt" path="res://Textures/explosion1.png" id="3_r2edu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6lp2c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bomiq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mvmaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_r2edu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Explosion" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_6lp2c")
+frame_progress = 0.00380018
