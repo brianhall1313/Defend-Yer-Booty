@@ -1,17 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://34oll8xgn7hl"]
+[gd_scene load_steps=4 format=3 uid="uid://34oll8xgn7hl"]
 
 [ext_resource type="Texture2D" uid="uid://bwx0lb6s3lva2" path="res://Textures/dinghySmall1.png" id="1_e416w"]
+[ext_resource type="Script" path="res://Scenes/dingy.gd" id="1_yypnn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0trsc"]
 radius = 8.0
 
 [node name="Dingy" type="Node2D"]
+script = ExtResource("1_yypnn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
 texture = ExtResource("1_e416w")
 
 [node name="Area2D" type="Area2D" parent="."]
+rotation = -1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_0trsc")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

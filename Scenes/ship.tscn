@@ -11,9 +11,13 @@ height = 110.0
 script = ExtResource("1_7vaos")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
 texture = ExtResource("2_gkdhl")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = -1.5708
 shape = SubResource("CapsuleShape2D_w0mef")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

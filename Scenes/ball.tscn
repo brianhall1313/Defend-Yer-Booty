@@ -21,3 +21,4 @@ rect = Rect2(-6, -6, 12, 12)
 shape = SubResource("CircleShape2D_tcwcx")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

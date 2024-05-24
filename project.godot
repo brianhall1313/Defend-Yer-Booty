@@ -14,6 +14,10 @@ config/name="Defend Yer Booty"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalSignalBus="*res://Global/GlobalSignalBus.gd"
+
 [display]
 
 window/size/viewport_width=1920
