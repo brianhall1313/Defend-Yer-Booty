@@ -10,6 +10,8 @@ radius = 8.0
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_e416w")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_0trsc")

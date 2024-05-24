@@ -8,3 +8,6 @@ script = ExtResource("1_q7dqk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_32jmr")
+
+[node name="barrel_tip" type="Marker2D" parent="."]
+position = Vector2(16, 0)

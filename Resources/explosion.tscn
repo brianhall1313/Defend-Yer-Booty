@@ -23,4 +23,4 @@ animations = [{
 
 [node name="Explosion" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_6lp2c")
-frame_progress = 0.00380018
+frame_progress = 0.968199
