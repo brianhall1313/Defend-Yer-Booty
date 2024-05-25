@@ -11,3 +11,8 @@ texture = ExtResource("1_32jmr")
 
 [node name="barrel_tip" type="Marker2D" parent="."]
 position = Vector2(16, 0)
+
+[node name="shot_timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="shot_timer" to="." method="_on_shot_timer_timeout"]

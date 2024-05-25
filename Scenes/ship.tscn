@@ -8,16 +8,26 @@ radius = 30.0
 height = 110.0
 
 [node name="ship" type="Node2D"]
+position = Vector2(-1, 0)
 script = ExtResource("1_7vaos")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.5708
 texture = ExtResource("2_gkdhl")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_w0mef")
 
+[node name="dingy_spawn" type="Marker2D" parent="."]
+position = Vector2(79, 1)
+
+[node name="dingy_timer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="dingy_timer" to="." method="_on_dingy_timer_timeout"]

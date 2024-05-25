@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_tcwcx"]
 radius = 5.5
 
-[node name="Ball" type="Node2D"]
+[node name="Ball" type="Node2D" groups=["bullet"]]
 script = ExtResource("1_lsi1a")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

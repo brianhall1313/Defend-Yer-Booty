@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bk2wcvpjowom"]
+[gd_scene load_steps=8 format=3 uid="uid://bk2wcvpjowom"]
 
 [ext_resource type="Texture2D" uid="uid://bfn0cdwsciujy" path="res://Textures/tiles_sheet.png" id="1_bfw5a"]
 [ext_resource type="Script" path="res://Scenes/the_island.gd" id="1_qdwn5"]
+[ext_resource type="Script" path="res://Scenes/UI.gd" id="3_440dt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fh8hg"]
 texture = ExtResource("1_bfw5a")
@@ -135,6 +136,7 @@ layer_3/tile_data = PackedInt32Array(458775, 786436, 4, 524311, 524292, 5, 58984
 [node name="landing_zone" type="Area2D" parent="."]
 position = Vector2(1445, 414)
 collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="landing_zone"]
 position = Vector2(96.25, 133.75)
@@ -149,3 +151,38 @@ curve = SubResource("Curve2D_h7uc6")
 [node name="pirate_spawn_point" type="PathFollow2D" parent="pirate_spawn_path"]
 position = Vector2(5, 10)
 rotation = 1.56416
+
+[node name="enemies" type="Node2D" parent="."]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_440dt")
+
+[node name="wave_start" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 869.0
+offset_top = 509.0
+offset_right = 1074.0
+offset_bottom = 561.0
+text = "Next Wave Start"
+
+[node name="new_game" type="Button" parent="UI"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "New Game"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_left = 1649.0
+offset_top = 17.0
+offset_right = 1910.0
+offset_bottom = 1057.0
+
+[connection signal="area_entered" from="landing_zone" to="." method="_on_landing_zone_area_entered"]
+[connection signal="new_game" from="UI" to="." method="_on_ui_new_game"]
+[connection signal="wave_start" from="UI" to="." method="_on_ui_wave_start"]
+[connection signal="button_up" from="UI/wave_start" to="UI" method="_on_wave_start_button_up"]
+[connection signal="button_up" from="UI/new_game" to="UI" method="_on_new_game_button_up"]

@@ -15,9 +15,9 @@ texture = ExtResource("1_e416w")
 
 [node name="Area2D" type="Area2D" parent="."]
 rotation = -1.5708
+collision_layer = 3
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_0trsc")
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
