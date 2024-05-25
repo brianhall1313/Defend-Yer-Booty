@@ -1,6 +1,7 @@
 extends Node
 
-const DEBUG=true
+const DEBUG=false
+var auto_shoot=true
 
 const STATES:Array[String]=["menu","play","setup","dead"]
 

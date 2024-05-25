@@ -45,9 +45,9 @@ func setup_level():
 
 
 
-func spawn_bullet(new_position:Vector2,new_rotation:float):
+func spawn_bullet(new_position:Vector2,new_rotation:float,upgrades):
 	var new = shot.instantiate()
-	new.shoot(new_position,new_rotation)
+	new.shoot(new_position,new_rotation,upgrades)
 	add_child(new)
 
 

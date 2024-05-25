@@ -12,7 +12,7 @@ func _process(delta):
 	position += speed*delta*direction*Global.global_speed
 
 
-func shoot(new_position:Vector2,new_rotation:float):
+func shoot(new_position:Vector2,new_rotation:float,upgrades):
 	self.position=new_position
 	self.global_rotation=new_rotation
 
