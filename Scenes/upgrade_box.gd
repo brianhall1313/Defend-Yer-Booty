@@ -19,6 +19,8 @@ func update(new_level:int,new_cost,disable=false):
 	upgrade_cost.text=str(new_cost)
 	if disable or new_level>=10:
 		upgrade_button.disabled=true
+	else:
+		upgrade_button.disabled=false
 
 
 func update_bar(new_level):

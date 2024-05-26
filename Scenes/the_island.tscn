@@ -176,16 +176,31 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "New Game"
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="UI"]
+layout_mode = 0
 offset_left = 1649.0
 offset_top = 17.0
-offset_right = 1910.0
+offset_right = 1915.0
 offset_bottom = 1057.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelContainer"]
 layout_mode = 2
 
-[node name="firing_speed" parent="PanelContainer/VBoxContainer" instance=ExtResource("4_1ym3q")]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Experience:"
+
+[node name="player_experience" type="Label" parent="UI/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="firing_speed" parent="UI/PanelContainer/VBoxContainer" instance=ExtResource("4_1ym3q")]
 layout_mode = 2
 
 [connection signal="area_entered" from="landing_zone" to="." method="_on_landing_zone_area_entered"]

@@ -26,6 +26,7 @@ func _ready():
 	Global.change_state("setup")
 	ui.show_wave_start_button()
 
+
 func _process(_delta):
 	if check:
 		check_win()
@@ -37,6 +38,7 @@ func connect_to_global_signal_bus():
 	GlobalSignalBus.connect("spawn_dingy",spawn_dingy)
 	GlobalSignalBus.connect("boat_died",check_trigger)
 	GlobalSignalBus.connect("player_death",player_death)
+	GlobalSignalBus.connect("ui_update",ui_update)
 
 
 func setup_level():
@@ -111,3 +113,7 @@ func _on_ui_new_game():
 func player_death():
 	Global.change_state("dead")
 	Global.global_speed=0
+
+
+func ui_update():
+	ui.update_ui(player)

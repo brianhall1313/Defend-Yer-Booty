@@ -6,7 +6,7 @@ var max_health:int=10
 var current_health:int
 var damage:int=10
 var target:Vector2
-var experience_reward:int=5
+var experience_reward:int=10
 var spawn_time_min:float=4.0
 var spawn_time_max:float=6.0
 @export var speed:int=5
