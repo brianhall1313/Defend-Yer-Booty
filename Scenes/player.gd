@@ -3,14 +3,17 @@ extends Node2D
 @onready var shot_timer = $shot_timer
 @onready var barrel = $barrel_tip
 var experience:int=0
-const shot_delay_base:float=3.0
+const shot_delay_base:float=2.0
 var shot_delay:float=3.0
 var shoot_ready:bool=true
-var max_health:int=10
+var max_health:int=20
 var current_health:int=1
 
-var upgrades:Dictionary={"Firing Speed":0}
-var upgrade_cost:Dictionary={"Firing Speed":1}
+var upgrades:Dictionary={"Firing Speed":0,
+"Damage":0,
+"Shot Speed":0
+}
+var upgrade_cost:Array[int]=[1,2,3,5,8,13,21,34,55,89,144]
 
 
 
@@ -18,6 +21,8 @@ var upgrade_cost:Dictionary={"Firing Speed":1}
 func _ready():
 	GlobalSignalBus.connect("boat_died",gain_experience)
 	GlobalSignalBus.connect("upgrade",upgrade_request)
+	GlobalSignalBus.connect("repair",restore)
+	GlobalSignalBus.connect("player_damage_dealt",take_damage)
 	current_health=max_health
 	set_timer()
 	shot_timer.start()
@@ -61,22 +66,25 @@ func take_damage(damage:int):
 		current_health=0
 		GlobalSignalBus.player_death.emit()
 		print('player dead')
+	GlobalSignalBus.ui_update.emit()
 	
+
+func restore():
+	experience-=10
+	current_health=max_health
+	GlobalSignalBus.ui_update.emit()
+
 
 
 func upgrade_request(upgrade_name,cost):
 	if upgrades.has(upgrade_name):
 		upgrades[upgrade_name]+=1
 		experience-=cost
-		new_cost(upgrade_name,cost)
 		if upgrade_name=="Firing Speed":
-			shot_delay = shot_delay_base-(upgrades[upgrade_name]*.35)
+			shot_delay = shot_delay_base-(upgrades[upgrade_name]*.19)
 			set_timer()
+		
 		GlobalSignalBus.ui_update.emit()
-
-
-func new_cost(upgrade_name,cost):
-	upgrade_cost[upgrade_name]=cost * 2
 
 
 func _on_shot_timer_timeout():

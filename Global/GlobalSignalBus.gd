@@ -6,3 +6,5 @@ signal boat_died(reward:int)
 signal player_death
 signal upgrade(upgrade_name,cost)
 signal ui_update
+signal repair
+signal player_damage_dealt(new_damage)

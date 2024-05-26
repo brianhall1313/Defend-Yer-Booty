@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bk2wcvpjowom"]
+[gd_scene load_steps=12 format=3 uid="uid://bk2wcvpjowom"]
 
 [ext_resource type="Texture2D" uid="uid://bfn0cdwsciujy" path="res://Textures/tiles_sheet.png" id="1_bfw5a"]
 [ext_resource type="Script" path="res://Scenes/the_island.gd" id="1_qdwn5"]
@@ -110,13 +110,32 @@ tile_size = Vector2i(64, 64)
 sources/4 = SubResource("TileSetAtlasSource_fh8hg")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crgwa"]
-size = Vector2(199.5, 260.5)
+size = Vector2(185, 217)
 
 [sub_resource type="Curve2D" id="Curve2D_h7uc6"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 5, 10, 0, 0, 0, 0, 12, 1064)
 }
 point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_3gnwa"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 24, 6, 0, 0, 0, 0, 1189, 18)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_i8ju3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 14, 1061, 0, 0, 0, 0, 1169, 1058)
+}
+point_count = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_57d20"]
+bg_color = Color(0, 0.901961, 0.352941, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_qdwn5")
@@ -140,7 +159,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="landing_zone"]
-position = Vector2(96.25, 133.75)
+position = Vector2(103.5, 132.5)
 shape = SubResource("RectangleShape2D_crgwa")
 
 [node name="target" type="Marker2D" parent="landing_zone/CollisionShape2D"]
@@ -152,6 +171,20 @@ curve = SubResource("Curve2D_h7uc6")
 [node name="pirate_spawn_point" type="PathFollow2D" parent="pirate_spawn_path"]
 position = Vector2(5, 10)
 rotation = 1.56416
+
+[node name="pirate_spawn_north" type="Path2D" parent="."]
+curve = SubResource("Curve2D_3gnwa")
+
+[node name="pirate_spawn_two" type="PathFollow2D" parent="pirate_spawn_north"]
+position = Vector2(24, 6)
+rotation = 0.0103001
+
+[node name="pirate_spawn_south" type="Path2D" parent="."]
+curve = SubResource("Curve2D_i8ju3")
+
+[node name="pirate_spawn_three" type="PathFollow2D" parent="pirate_spawn_south"]
+position = Vector2(14, 1061)
+rotation = -0.0025974
 
 [node name="enemies" type="Node2D" parent="."]
 
@@ -172,8 +205,10 @@ text = "Next Wave Start"
 
 [node name="new_game" type="Button" parent="UI"]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 871.0
+offset_top = 514.0
+offset_right = 1073.0
+offset_bottom = 557.0
 text = "New Game"
 
 [node name="PanelContainer" type="PanelContainer" parent="UI"]
@@ -203,8 +238,40 @@ vertical_alignment = 1
 [node name="firing_speed" parent="UI/PanelContainer/VBoxContainer" instance=ExtResource("4_1ym3q")]
 layout_mode = 2
 
+[node name="damage" parent="UI/PanelContainer/VBoxContainer" instance=ExtResource("4_1ym3q")]
+layout_mode = 2
+
+[node name="shot_speed" parent="UI/PanelContainer/VBoxContainer" instance=ExtResource("4_1ym3q")]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="UI/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Base Health"
+horizontal_alignment = 1
+
+[node name="health_bar" type="ProgressBar" parent="UI/PanelContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_57d20")
+step = 1.0
+show_percentage = false
+
+[node name="repair_button" type="Button" parent="UI/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Repair Defenses
+(cost: 10 )"
+
 [connection signal="area_entered" from="landing_zone" to="." method="_on_landing_zone_area_entered"]
 [connection signal="new_game" from="UI" to="." method="_on_ui_new_game"]
 [connection signal="wave_start" from="UI" to="." method="_on_ui_wave_start"]
 [connection signal="button_up" from="UI/wave_start" to="UI" method="_on_wave_start_button_up"]
 [connection signal="button_up" from="UI/new_game" to="UI" method="_on_new_game_button_up"]
+[connection signal="button_up" from="UI/PanelContainer/VBoxContainer/VBoxContainer/repair_button" to="UI" method="_on_repair_button_button_up"]

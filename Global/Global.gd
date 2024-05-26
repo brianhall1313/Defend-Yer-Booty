@@ -1,5 +1,10 @@
 extends Node
 
+@onready var animations:Dictionary={
+	"explosion":preload("res://Animations/explosion.tscn")
+	}
+
+
 const DEBUG=false
 var auto_shoot=true
 

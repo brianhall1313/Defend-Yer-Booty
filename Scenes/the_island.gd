@@ -1,7 +1,10 @@
 extends Node2D
 
 @onready var map=$map
-@onready var spawn=$pirate_spawn_path/pirate_spawn_point
+@onready var spawn1=$pirate_spawn_path/pirate_spawn_point
+@onready var spawn2=$pirate_spawn_north/pirate_spawn_two
+@onready var spawn3=$pirate_spawn_south/pirate_spawn_three
+@onready var spawn_list:Array=[spawn1,spawn2,spawn3]
 @onready var target=$landing_zone/CollisionShape2D/target
 @onready var enemies=$enemies
 @onready var ui=$UI
@@ -23,6 +26,7 @@ func _ready():
 	connect_to_global_signal_bus()
 	player_position=map.map_to_local(center)
 	spawn_player()
+	ui_update()
 	Global.change_state("setup")
 	ui.show_wave_start_button()
 
@@ -60,10 +64,17 @@ func spawn_player():
 
 
 func spawn_pirate_ship():
+	var spawn=spawn_list.pick_random()
 	spawn.progress_ratio=randf()
 	var new = ship.instantiate()
 	new.position = spawn.position
 	enemies.add_child(new)
+	var color:String
+	if level==1:
+		color="basic"
+	else:
+		color=new.get_random_color()
+	new.setup(color)
 	new.target_acquired(target.global_position)
 
 
@@ -80,6 +91,7 @@ func check_win():
 		level+=1
 		ui.show_wave_start_button()
 		Global.change_state("setup")
+		ui_update()
 		
 
 func check_trigger(_experience):
@@ -92,6 +104,7 @@ func new_game():
 
 func next_level():
 	setup_level()
+	ui_update()
 
 
 func _on_ui_wave_start():
@@ -101,8 +114,9 @@ func _on_ui_wave_start():
 
 
 func _on_landing_zone_area_entered(area):
-	player.take_damage(area.get_parent().damage)
+	GlobalSignalBus.player_damage_dealt.emit(area.get_parent().damage)
 	area.get_parent().speed=0
+	area.get_parent().first_blood()
 
 
 func _on_ui_new_game():
@@ -113,6 +127,7 @@ func _on_ui_new_game():
 func player_death():
 	Global.change_state("dead")
 	Global.global_speed=0
+	ui_update()
 
 
 func ui_update():
