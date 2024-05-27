@@ -8,3 +8,4 @@ signal upgrade(upgrade_name,cost)
 signal ui_update
 signal repair
 signal player_damage_dealt(new_damage)
+signal play_effect(effect:String)

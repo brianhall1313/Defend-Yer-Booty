@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnbaa38leodpa"]
+[gd_scene load_steps=4 format=3 uid="uid://dnbaa38leodpa"]
 
 [ext_resource type="Texture2D" uid="uid://fjwft5kew0fb" path="res://Textures/cannonMobile.png" id="1_32jmr"]
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_q7dqk"]
+
+[sub_resource type="Curve" id="Curve_vnd37"]
+_data = [Vector2(0.0168539, 1), 0.0, 0.0, 0, 0, Vector2(0.550562, 0.076923), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_q7dqk")
@@ -14,5 +18,18 @@ position = Vector2(16, 0)
 
 [node name="shot_timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(16, 0)
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 1.0
+spread = 110.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_vnd37")
 
 [connection signal="timeout" from="shot_timer" to="." method="_on_shot_timer_timeout"]

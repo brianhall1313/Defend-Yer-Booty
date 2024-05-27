@@ -24,7 +24,7 @@ animations = [{
 
 [node name="Explosion" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_jp33d")
-frame_progress = 0.193348
+frame_progress = 0.563332
 script = ExtResource("4_htdn6")
 
 [connection signal="animation_looped" from="." to="." method="_on_animation_looped"]

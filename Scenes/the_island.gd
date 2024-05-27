@@ -43,10 +43,24 @@ func connect_to_global_signal_bus():
 	GlobalSignalBus.connect("boat_died",check_trigger)
 	GlobalSignalBus.connect("player_death",player_death)
 	GlobalSignalBus.connect("ui_update",ui_update)
+	GlobalSignalBus.connect("play_effect",play_effect)
 
 
 func setup_level():
-	for _i in range(level):
+	var spawn_count:int
+	if level<=4:
+		spawn_count=level
+	elif level>4 and level<6:
+		spawn_count=level+1
+	elif level>5 and level<10:
+		spawn_count=level+3
+	elif level>10 and level<15:
+		spawn_count=level+5
+	elif level>14 and level<20:
+		spawn_count=level*2
+	else:
+		spawn_count=level*3
+	for _i in range(spawn_count):
 		spawn_pirate_ship()
 
 
@@ -64,7 +78,11 @@ func spawn_player():
 
 
 func spawn_pirate_ship():
-	var spawn=spawn_list.pick_random()
+	var spawn
+	if level==1:
+		spawn=spawn1
+	else:
+		spawn=spawn_list.pick_random()
 	spawn.progress_ratio=randf()
 	var new = ship.instantiate()
 	new.position = spawn.position
@@ -132,3 +150,16 @@ func player_death():
 
 func ui_update():
 	ui.update_ui(player)
+
+
+func play_effect(effect:String):
+	if effect=="shot":
+		$shot.play()
+	if effect=="explosion":
+		$explosion.play()
+	if effect=="upgrade":
+		$upgrade.play()
+	if effect=="hit":
+		$hit.play()
+	if effect=="player_hit":
+		$player_hit.play()

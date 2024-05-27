@@ -55,6 +55,7 @@ func target_acquired(new_target:Vector2):
 	direction=direction.rotated(get_rotation())
 	timer.wait_time=spawn_time_min
 	timer.start()
+	GlobalSignalBus.spawn_dingy.emit(self)
 	
 
 
@@ -68,10 +69,29 @@ func get_hit(damage_taken:int):
 	if current_health <= 0:
 		GlobalSignalBus.boat_died.emit(experience_reward) 
 		explode()
+	else:
+		take_damage_animation()
+
+
+func take_damage_animation():
+	var tween = get_tree().create_tween()
+	var move_range:int = 3
+	tween.tween_property(self, "modulate", Color.RED, .1)
+	var start_x = sprite.offset.x - move_range
+	var mid_x = sprite.offset.x 
+	var end_x = sprite.offset.x + move_range
+	tween.tween_property(sprite, "offset:x", end_x, .01).from(start_x)
+	tween.tween_property(sprite, "offset:x", start_x, .01).from(end_x)
+	tween.tween_property(sprite, "offset:x", end_x, .01).from(start_x)
+	tween.tween_property(sprite, "offset:x", start_x, .01).from(end_x)
+	tween.tween_property(self, "modulate", Color.WHITE, .2)
+	await tween.finished
+	sprite.offset.x = mid_x
 
 
 func explode():
 	var new=Global.animations["explosion"].instantiate()
+	GlobalSignalBus.play_effect.emit("explosion")
 	new.position=self.position
 	get_tree().get_current_scene().add_child(new)
 	new.play()
@@ -90,7 +110,7 @@ func setup(new_color:String):
 		return
 	if color=="blue":
 		max_health=40
-		spawn_time_max-=1
+		spawn_time_max-=2
 		spawn_time_min-=1
 		health_bar.max_value=max_health
 		health_bar.value=max_health

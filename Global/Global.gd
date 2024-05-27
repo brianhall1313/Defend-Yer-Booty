@@ -1,7 +1,8 @@
 extends Node
 
 @onready var animations:Dictionary={
-	"explosion":preload("res://Animations/explosion.tscn")
+	"explosion":preload("res://Animations/explosion.tscn"),
+	"hit":preload("res://Animations/hit_particle.tscn")
 	}
 
 

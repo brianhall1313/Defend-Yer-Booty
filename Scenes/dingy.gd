@@ -31,6 +31,7 @@ func explode():
 	var new=Global.animations["explosion"].instantiate()
 	new.position=self.position
 	get_tree().get_current_scene().add_child(new)
+	new.scale=Vector2(.5,.5)
 	new.play()
 	self.queue_free()
 

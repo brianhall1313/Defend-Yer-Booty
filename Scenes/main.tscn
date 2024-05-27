@@ -1,0 +1,181 @@
+[gd_scene load_steps=5 format=3 uid="uid://dts22loe15w4w"]
+
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_nmyij"]
+[ext_resource type="AudioStream" uid="uid://ca3aj70pxxco0" path="res://Sound/title.wav" id="2_0cpkl"]
+[ext_resource type="Texture2D" uid="uid://bg8a5ir5e4wvs" path="res://Textures/sea day.png" id="2_alonq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4fwpv"]
+bg_color = Color(0.103744, 0.103744, 0.103743, 1)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_nmyij")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 0
+offset_right = 1944.0
+offset_bottom = 1096.0
+
+[node name="TextureRect" type="TextureRect" parent="Control/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("2_alonq")
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Control" type="Control" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 175)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "Defend Yer Booty!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 175)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="New Game" type="Button" parent="Control/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "New Game"
+
+[node name="How to Play" type="Button" parent="Control/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "How to Play"
+
+[node name="Credits" type="Button" parent="Control/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Credits"
+
+[node name="Quit" type="Button" parent="Control/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+
+[node name="how to play" type="PanelContainer" parent="Control"]
+visible = false
+layout_mode = 0
+offset_right = 1944.0
+offset_bottom = 1096.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4fwpv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/how to play"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/how to play/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "How to Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/how to play/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "You are the Dread Pirate Roberts!
+Tired of the life of a pirate you have decided to abscond with your ill gotten goods!
+  It's too bad your old crew just can't let it be.
+ You've decided it's time for a last stand! You stand atop your pile of treasure
+(so they don't shoot at you),
+ with your only companion: a cannon
+ * aim with the mouse
+*  buy upgrades(1-3 are hot keys)
+*repair during breaks
+* survive
+"
+horizontal_alignment = 1
+
+[node name="how_to_play_button_back" type="Button" parent="Control/how to play/VBoxContainer"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(0.992157, 1, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Back"
+
+[node name="credits" type="PanelContainer" parent="Control"]
+visible = false
+layout_mode = 0
+offset_right = 1944.0
+offset_bottom = 1096.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4fwpv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/credits"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/credits/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/credits/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Made for Mini Jam 159: Ocean
+Designer/Programmer
+Brian Hall
+https://pr0t34n.itch.io/
+Assets
+https://kenney.nl/
+https://alkakrab.itch.io/
+https://kronbits.itch.io/freesfx
+https://ninjikin.itch.io/treasure
+Faewild : https://lunarmoonstudios.itch.io/
+
+"
+horizontal_alignment = 1
+
+[node name="credits_back" type="Button" parent="Control/credits/VBoxContainer"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(0, 0.972549, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Back"
+
+[node name="background_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0cpkl")
+autoplay = true
+
+[connection signal="button_up" from="Control/VBoxContainer/VBoxContainer/New Game" to="." method="_on_new_game_button_up"]
+[connection signal="button_up" from="Control/VBoxContainer/VBoxContainer/How to Play" to="." method="_on_how_to_play_button_up"]
+[connection signal="button_up" from="Control/VBoxContainer/VBoxContainer/Credits" to="." method="_on_credits_button_up"]
+[connection signal="button_up" from="Control/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_button_up"]
+[connection signal="button_up" from="Control/how to play/VBoxContainer/how_to_play_button_back" to="." method="_on_how_to_play_button_back_button_up"]
+[connection signal="button_up" from="Control/credits/VBoxContainer/credits_back" to="." method="_on_credits_back_button_up"]

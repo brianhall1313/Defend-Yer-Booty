@@ -1,0 +1,151 @@
+[gd_scene load_steps=4 format=3 uid="uid://q3l70ls667eb"]
+
+[ext_resource type="Script" path="res://Scenes/UI.gd" id="1_ysfqx"]
+[ext_resource type="PackedScene" uid="uid://67v0l5b80pyb" path="res://Scenes/upgrade_box.tscn" id="2_ss7s7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_57d20"]
+bg_color = Color(0, 0.901961, 0.352941, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ysfqx")
+
+[node name="wave_start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 869.0
+offset_top = 509.0
+offset_right = 1074.0
+offset_bottom = 561.0
+text = "Next Wave Start"
+
+[node name="new_game" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 871.0
+offset_top = 514.0
+offset_right = 1073.0
+offset_bottom = 557.0
+
+[node name="PanelContainer2" type="PanelContainer" parent="new_game"]
+layout_mode = 0
+offset_left = -890.0
+offset_top = -516.0
+offset_right = 1083.0
+offset_bottom = 592.0
+
+[node name="PanelContainer" type="PanelContainer" parent="new_game"]
+layout_mode = 0
+offset_left = -105.0
+offset_top = -123.0
+offset_right = 297.0
+offset_bottom = -10.0
+
+[node name="Label" type="Label" parent="new_game/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="new_game" type="Button" parent="new_game"]
+layout_mode = 2
+offset_left = -9.0
+offset_right = 198.0
+offset_bottom = 50.0
+text = "New Game"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 1649.0
+offset_top = 17.0
+offset_right = 1915.0
+offset_bottom = 1057.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Experience:"
+
+[node name="player_experience" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Press 1"
+horizontal_alignment = 1
+
+[node name="firing_speed" parent="PanelContainer/VBoxContainer" instance=ExtResource("2_ss7s7")]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Press 2"
+horizontal_alignment = 1
+
+[node name="damage" parent="PanelContainer/VBoxContainer" instance=ExtResource("2_ss7s7")]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Press 3"
+horizontal_alignment = 1
+
+[node name="shot_speed" parent="PanelContainer/VBoxContainer" instance=ExtResource("2_ss7s7")]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Press 4 
+(in between waves only)"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Base Health"
+horizontal_alignment = 1
+
+[node name="health_bar" type="ProgressBar" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_57d20")
+step = 1.0
+show_percentage = false
+
+[node name="repair_button" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Repair Defenses
+(cost: 10 )"
+
+[node name="quit" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Quit"
+
+[connection signal="button_up" from="wave_start" to="." method="_on_wave_start_button_up"]
+[connection signal="button_up" from="new_game/new_game" to="." method="_on_new_game_button_up"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/VBoxContainer/repair_button" to="." method="_on_repair_button_button_up"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/quit" to="." method="_on_quit_button_up"]
