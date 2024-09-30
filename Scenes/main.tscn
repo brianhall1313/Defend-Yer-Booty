@@ -147,6 +147,7 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Made for Mini Jam 159: Ocean
+Engine: Godot 4
 Designer/Programmer
 Brian Hall
 https://pr0t34n.itch.io/
@@ -156,9 +157,16 @@ https://alkakrab.itch.io/
 https://kronbits.itch.io/freesfx
 https://ninjikin.itch.io/treasure
 Faewild : https://lunarmoonstudios.itch.io/
-
 "
 horizontal_alignment = 1
+
+[node name="LinkButton" type="LinkButton" parent="Control/credits/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "Godot License"
+uri = "https://godotengine.org/license/"
 
 [node name="credits_back" type="Button" parent="Control/credits/VBoxContainer"]
 custom_minimum_size = Vector2(200, 75)

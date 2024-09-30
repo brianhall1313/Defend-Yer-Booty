@@ -24,4 +24,3 @@ func _on_how_to_play_button_back_button_up():
 
 func _on_credits_back_button_up():
 	$Control/credits.hide()
-
